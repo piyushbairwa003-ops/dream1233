@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,7 +135,7 @@
     }
     .seat-row strong { color: #15803d; font-weight: 900; font-size: 12px; }
 
-    /* ── CTA BUTTON ── */
+    /* ── CTA BUTTON (Telegram) ── */
     .cta-wrap {
       width: 100%;
       margin-top: 12px;
@@ -169,6 +168,49 @@
       transform: translateX(-100%);
       animation: shimmer 2.6s ease-in-out infinite;
     }
+
+    /* ── WHATSAPP BUTTON ── */
+    .wa-wrap {
+      width: 100%;
+      margin-top: 10px;
+      animation: fadeUp .4s .28s ease both;
+    }
+    .btn-wa {
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      width: 100%;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #075e54 0%, #128c7e 40%, #25d366 100%);
+      background-size: 200% auto;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none; cursor: pointer;
+      box-shadow: 0 5px 22px rgba(37,211,102,0.40);
+      white-space: nowrap;
+      animation: waPulse 2.2s ease-in-out infinite, waSlide 3.5s linear infinite;
+    }
+    .btn-wa::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 2.6s ease-in-out 0.4s infinite;
+    }
+    @keyframes waPulse {
+      0%,100% { transform: scale(1);     box-shadow: 0 5px 22px rgba(37,211,102,.40); }
+      50%      { transform: scale(1.03); box-shadow: 0 9px 36px rgba(37,211,102,.58); }
+    }
+    @keyframes waSlide {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
     @keyframes shimmer {
       0% { transform: translateX(-100%); }
       60%, 100% { transform: translateX(120%); }
@@ -189,6 +231,9 @@
     .tg { width: 17px; height: 17px; flex-shrink: 0; }
     .tg path { fill: #ffffff; }
 
+    /* WhatsApp icon */
+    .wa-icon { width: 20px; height: 20px; flex-shrink: 0; }
+
     /* ── GET ID TAG ── */
     .get-id {
       display: inline-flex; align-items: center; gap: 6px;
@@ -200,7 +245,7 @@
       font-size: 10px; font-weight: 800;
       letter-spacing: .12em; text-transform: uppercase;
       color: #15803d;
-      animation: fadeUp .4s .30s ease both;
+      animation: fadeUp .4s .34s ease both;
       white-space: nowrap;
     }
     .get-id .dot {
@@ -217,7 +262,7 @@
       font-size: 10px;
       color: #15803d;
       letter-spacing: .04em;
-      animation: fadeUp .4s .34s ease both;
+      animation: fadeUp .4s .38s ease both;
     }
     .credit a {
       color: #14532d;
@@ -236,7 +281,7 @@
       .page { padding: 44px 12px 20px; }
       .card { max-width: 100%; }
       .vip-text h2 { font-size: 19px; }
-      .btn { height: 48px; font-size: 12px; }
+      .btn, .btn-wa { height: 48px; font-size: 12px; }
     }
   </style>
 </head>
@@ -283,6 +328,7 @@
         🔥 Hurry! Only <strong>&nbsp;500 seats&nbsp;</strong> left — grab yours now! 🔥
       </div>
 
+      <!-- TELEGRAM BUTTON -->
       <div class="cta-wrap">
         <a href="https://t.me/+PRwkAPz8U2cyZTFl" target="_blank" rel="noopener" class="btn">
           <span class="btn-inner">
@@ -290,6 +336,24 @@
               <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.069l-2.04 9.608c-.15.673-.546.837-1.107.52l-3.062-2.255-1.478 1.423c-.164.164-.3.3-.615.3l.219-3.108 5.655-5.108c.246-.218-.053-.34-.38-.12L7.27 14.078l-3.013-.94c-.655-.204-.668-.655.137-.969l11.753-4.53c.546-.2 1.024.133.847.93l-.432-.5z"/>
             </svg>
             Join &amp; Get Your ID
+          </span>
+        </a>
+      </div>
+
+      <!-- WHATSAPP BUTTON -->
+      <div class="wa-wrap">
+        <a
+          href="https://wa.me/918108020369?text=I%20am%20interested%20to%20get%20my%20ID"
+          target="_blank"
+          rel="noopener"
+          class="btn-wa"
+        >
+          <span class="btn-inner">
+            <!-- WhatsApp SVG Icon -->
+            <svg class="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#ffffff" d="M16 3C8.82 3 3 8.82 3 16c0 2.3.61 4.47 1.67 6.35L3 29l6.83-1.64A13 13 0 0016 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm6.37 18.07c-.27.76-1.57 1.46-2.16 1.53-.56.07-1.07.28-3.6-.75-3.03-1.22-4.97-4.3-5.12-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.05-2.49c.27-.3.6-.38.8-.38.2 0 .4 0 .57.01.18.01.43-.07.67.51.27.62.9 2.19.98 2.35.08.16.13.35.03.56-.1.2-.15.33-.3.5-.15.18-.32.39-.45.52-.15.15-.3.31-.13.61.17.3.77 1.27 1.65 2.06 1.13 1.01 2.08 1.32 2.38 1.47.3.15.48.13.66-.08.18-.2.77-.9.98-1.2.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.34.07.12.07.72-.2 1.48z"/>
+            </svg>
+            Get My ID on WhatsApp
           </span>
         </a>
       </div>
