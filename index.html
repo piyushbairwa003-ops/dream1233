@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,273 +10,239 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      height: 100%; width: 100%;
-      background: #ffffff;
+      height: 100%;
+      width: 100%;
+      background: #f0fdf4;
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
-      display: flex; align-items: center; justify-content: center;
     }
 
     /* ── TOP TICKER ── */
     .ticker-wrap {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      background: linear-gradient(90deg, #ff6b00, #ffb700, #ff6b00);
-      background-size: 300% auto;
-      animation: barFlow 3s linear infinite;
+      background: #15803d;
       overflow: hidden;
       height: 32px;
       display: flex; align-items: center;
+      border-bottom: 2px solid #16a34a;
     }
     .ticker-track {
       display: flex;
       white-space: nowrap;
-      animation: tickerMove 22s linear infinite;
+      animation: tickerMove 26s linear infinite;
     }
     .ticker-track span {
-      font-size: 11px; font-weight: 800;
+      font-size: 10px; font-weight: 800;
       letter-spacing: .18em; text-transform: uppercase;
-      color: #030207;
-      padding: 0 32px;
+      color: #ffffff;
+      padding: 0 30px;
     }
-    .ticker-track span::before {
-      content: '🔥';
-      margin-right: 8px;
-    }
+    .ticker-track span::before { content: '🔥'; margin-right: 6px; }
+    .ticker-track span::after  { content: '🔥'; margin-left:  6px; }
     @keyframes tickerMove {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
-    @keyframes barFlow { 0%{background-position:0% center} 100%{background-position:300% center} }
-
+    /* ── PAGE WRAPPER ── */
     .page {
-      position: relative; z-index: 1;
-      min-height: 100vh; width: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-
-      background: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px 24px;
+      background: #f0fdf4;
     }
 
-    /* light warm radial glow behind card */
-    .page::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse at 50% 40%, rgba(255,180,0,0.10) 0%, transparent 65%),
-        radial-gradient(ellipse at 80% 80%, rgba(255,100,0,0.06) 0%, transparent 50%);
+    /* ── CARD — fixed small width ── */
+    .card {
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
+    /* ── TOP BADGE ── */
     .top-badge {
-      position: relative; z-index: 1;
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,180,0,0.12);
-      border: 1.5px solid rgba(255,140,0,0.35);
-      border-radius: 999px; padding: 5px 16px;
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: .22em; color: #b45309;
+      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+      border: 1.5px solid rgba(21,128,61,0.35);
+      border-radius: 999px; padding: 4px 16px;
+      font-size: 9px; font-weight: 800;
+      letter-spacing: .20em; color: #15803d;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       animation: fadeUp .4s ease both;
       white-space: nowrap;
     }
-    .bd { width:6px; height:6px; border-radius:50%; background:#ff6b00; box-shadow:0 0 8px #ff6b00; animation:bdPulse 1.4s ease-in-out infinite; flex-shrink:0; }
-    @keyframes bdPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.7)} }
-
-    .poster-wrap {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 320px;
-      border-radius: 16px; overflow: hidden;
-      border: 2px solid rgba(255,180,0,0.40);
-      box-shadow:
-        0 0 0 1px rgba(255,180,0,0.12),
-        0 8px 40px rgba(255,140,0,0.22),
-        0 0 60px rgba(255,100,0,0.08);
-      animation: fadeUp .4s .06s ease both, posterGlow 3s ease-in-out infinite;
+    .bd {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #16a34a;
+      animation: bdPulse 1.4s ease-in-out infinite;
       flex-shrink: 0;
     }
-    @keyframes posterGlow {
-      0%,100% { box-shadow: 0 0 0 1px rgba(255,180,0,.12), 0 8px 40px rgba(255,140,0,.22), 0 0 60px rgba(255,100,0,.08); }
-      50%      { box-shadow: 0 0 0 1px rgba(255,180,0,.25), 0 12px 56px rgba(255,140,0,.38), 0 0 80px rgba(255,100,0,.16); }
+    @keyframes bdPulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.3; transform:scale(.65); }
     }
-    .poster-wrap img { width: 100%; height: auto; display: block; object-fit: cover; }
 
+    /* ── POSTER ── */
+    .poster-wrap {
+      width: 100%;
+      border-radius: 14px; overflow: hidden;
+      border: 2px solid rgba(21,128,61,0.38);
+      box-shadow: 0 6px 28px rgba(21,128,61,0.18);
+      animation: fadeUp .4s .06s ease both;
+    }
+    .poster-wrap img {
+      width: 100%; height: auto;
+      display: block; object-fit: cover;
+    }
+
+    /* ── VIP TITLE ── */
     .vip-text {
-      position: relative; z-index: 1;
       text-align: center;
-      margin-top: 16px;
-      animation: fadeUp .4s .14s ease both;
+      margin-top: 14px;
+      animation: fadeUp .4s .12s ease both;
     }
     .vip-text h2 {
-      font-size: clamp(18px, 5vw, 28px);
-      font-weight: 900; letter-spacing: .06em;
-      background: linear-gradient(90deg, #b45309, #d97706, #f59e0b);
+      font-size: 22px;
+      font-weight: 900; letter-spacing: .05em;
+      background: linear-gradient(90deg, #14532d, #15803d, #16a34a, #22c55e);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 2px 8px rgba(255,140,0,.18));
       line-height: 1.15;
     }
     .vip-text p {
-      font-size: clamp(11px, 2.5vw, 14px);
-      font-weight: 600; color: #888;
-      letter-spacing: .08em; margin-top: 4px;
+      font-size: 11px;
+      font-weight: 700; color: #15803d;
+      letter-spacing: .08em; margin-top: 3px;
       text-transform: uppercase;
     }
-    .vip-text p span { color: #e05c00; font-weight: 800; }
+    .vip-text p span { color: #14532d; font-weight: 900; }
 
+    /* ── SEAT ROW ── */
     .seat-row {
-      position: relative; z-index: 1;
-      display: flex; align-items: center; gap: 8px;
-      background: rgba(255,100,0,.07);
-      border: 1px solid rgba(255,100,0,.22);
-      border-radius: 8px; padding: 7px 18px;
-      margin-top: 12px;
-      animation: fadeUp .4s .22s ease both;
-      font-size: 11px; font-weight: 700;
-      color: #888; letter-spacing: .06em;
+      display: flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+      border: 1.5px solid rgba(21,128,61,0.25);
+      border-radius: 8px; padding: 7px 16px;
+      margin-top: 10px;
+      animation: fadeUp .4s .18s ease both;
+      font-size: 10.5px; font-weight: 700;
+      color: #14532d; letter-spacing: .05em;
       white-space: nowrap;
     }
-    .seat-row span { color: #e05c00; font-weight: 900; font-size: 13px; }
-    .fire { font-size: 14px; }
+    .seat-row strong { color: #15803d; font-weight: 900; font-size: 12px; }
 
     /* ── CTA BUTTON ── */
     .cta-wrap {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 320px;
-      margin-top: 14px;
-      animation: fadeUp .4s .30s ease both;
+      width: 100%;
+      margin-top: 12px;
+      animation: fadeUp .4s .24s ease both;
     }
     .btn {
       position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
       width: 100%;
-      padding: 0 20px;
-      height: 52px;
+      height: 50px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #b45309, #d97706, #fbbf24, #fde68a);
+      background: linear-gradient(135deg, #14532d 0%, #15803d 35%, #16a34a 65%, #22c55e 100%);
       background-size: 200% auto;
-      color: #030207;
+      color: #ffffff;
       font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: clamp(12px, 3.8vw, 15px);
+      font-weight: 900;
+      font-size: 13px;
       letter-spacing: .10em;
       text-transform: uppercase;
       text-decoration: none;
       border: none; cursor: pointer;
-      box-shadow: 0 6px 30px rgba(255,180,0,.40);
+      box-shadow: 0 5px 22px rgba(21,128,61,0.38);
       white-space: nowrap;
-      animation: btnPulse 2s ease-in-out infinite, gSlide 3s linear infinite;
+      animation: btnPulse 2.2s ease-in-out infinite, gSlide 3.5s linear infinite;
     }
     .btn::before {
-      content:''; position:absolute; inset:0;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
-      transform:translateX(-100%);
-      animation:shimmer 2.4s ease-in-out infinite;
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 2.6s ease-in-out infinite;
     }
-    @keyframes shimmer { 0%{transform:translateX(-100%)} 55%,100%{transform:translateX(100%)} }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      60%, 100% { transform: translateX(120%); }
+    }
     @keyframes btnPulse {
-      0%,100%{transform:scale(1);   box-shadow:0 6px 30px rgba(255,180,0,.40);}
-      50%    {transform:scale(1.04);box-shadow:0 10px 44px rgba(255,180,0,.65);}
+      0%,100% { transform: scale(1);     box-shadow: 0 5px 22px rgba(21,128,61,.38); }
+      50%      { transform: scale(1.03); box-shadow: 0 9px 36px rgba(21,128,61,.55); }
     }
-    @keyframes gSlide { 0%{background-position:0% center} 100%{background-position:200% center} }
-
+    @keyframes gSlide {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
     .btn-inner {
       position: relative; z-index: 1;
       display: flex; align-items: center;
       gap: 8px;
-      white-space: nowrap;
     }
-    .tg { width: 18px; height: 18px; flex-shrink: 0; }
-    .tg path { fill: #030207; }
+    .tg { width: 17px; height: 17px; flex-shrink: 0; }
+    .tg path { fill: #ffffff; }
 
     /* ── GET ID TAG ── */
     .get-id {
-      position: relative; z-index: 1;
-      display: inline-flex; align-items: center; gap: 7px;
-      margin-top: 12px;
-      background: linear-gradient(135deg, #fff7ed, #fff3cd);
-      border: 1.5px solid rgba(255,140,0,0.45);
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+      border: 1.5px solid rgba(21,128,61,0.32);
       border-radius: 999px;
-      padding: 6px 18px;
-      font-size: 11px; font-weight: 800;
+      padding: 5px 16px;
+      font-size: 10px; font-weight: 800;
       letter-spacing: .12em; text-transform: uppercase;
-      color: #b45309;
-      animation: fadeUp .4s .34s ease both;
-      box-shadow: 0 2px 12px rgba(255,140,0,.15);
+      color: #15803d;
+      animation: fadeUp .4s .30s ease both;
       white-space: nowrap;
     }
     .get-id .dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: #ff6b00;
-      box-shadow: 0 0 6px #ff6b00;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #16a34a;
       animation: bdPulse 1.2s ease-in-out infinite;
       flex-shrink: 0;
     }
 
     /* ── CREDIT ── */
     .credit {
-      position: relative; z-index: 1;
-      margin-top: 14px;
+      margin-top: 12px;
       text-align: center;
-      font-size: 11px;
-      color: #aaa;
-      letter-spacing: .03em;
-      animation: fadeUp .4s .38s ease both;
+      font-size: 10px;
+      color: #15803d;
+      letter-spacing: .04em;
+      animation: fadeUp .4s .34s ease both;
     }
     .credit a {
-      color: #d97706;
+      color: #14532d;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
     }
     .credit a:hover { text-decoration: underline; }
 
     @keyframes fadeUp {
-      from { opacity:0; transform:translateY(12px); }
-      to   { opacity:1; transform:translateY(0); }
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── PHONE ≤ 480px ── */
-    @media (max-width:480px) {
-      .page { padding: 52px 16px 24px; }
-      .top-badge { font-size: 8px; padding: 4px 12px; margin-bottom: 10px; letter-spacing: .15em; }
-      .poster-wrap { max-width: 100%; border-radius: 12px; }
-      .vip-text { margin-top: 11px; }
-      .vip-text h2 { font-size: clamp(16px, 5vw, 20px); }
-      .vip-text p { font-size: 10.5px; margin-top: 3px; }
-      .seat-row { margin-top: 9px; padding: 6px 14px; font-size: 10px; }
-      .seat-row span { font-size: 11.5px; }
-      .cta-wrap { margin-top: 11px; max-width: 100%; }
-      .btn { height: 50px; font-size: clamp(11px, 3.5vw, 13px); letter-spacing: .08em; border-radius: 10px; padding: 0 16px; }
-      .btn-inner { gap: 7px; }
-      .tg { width: 16px; height: 16px; }
-      .credit { font-size: 10px; }
-    }
-
-    @media (max-width: 370px) {
-      .btn { height: 48px; font-size: 11px; letter-spacing: .06em; padding: 0 12px; }
-      .tg { width: 15px; height: 15px; }
-      .btn-inner { gap: 6px; }
-      .top-badge { font-size: 7.5px; letter-spacing: .12em; }
-    }
-
-    /* ── LAPTOP ≥ 768px ── */
-    @media (min-width:768px) {
-      .top-badge { font-size:10.5px; padding:6px 18px; margin-bottom:18px; }
-      .poster-wrap { max-width:380px; border-radius:18px; }
-      .vip-text { margin-top:18px; }
-      .vip-text h2 { font-size:30px; }
-      .vip-text p  { font-size:14px; margin-top:5px; }
-      .seat-row { margin-top:14px; padding:8px 22px; font-size:12px; }
-      .seat-row span { font-size:14px; }
-      .cta-wrap { margin-top:16px; max-width:380px; }
-      .btn { height:56px; font-size:16px; letter-spacing:.12em; padding:0 34px; border-radius:14px; }
-      .credit { font-size: 12px; margin-top: 16px; }
+    /* ── MOBILE ≤ 480px ── */
+    @media (max-width: 480px) {
+      .page { padding: 44px 12px 20px; }
+      .card { max-width: 100%; }
+      .vip-text h2 { font-size: 19px; }
+      .btn { height: 48px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP MARQUEE TICKER -->
+  <!-- TICKER -->
   <div class="ticker-wrap">
     <div class="ticker-track">
       <span>VIP Member Joining — Only 500 Limited Seats</span>
@@ -292,49 +259,49 @@
   </div>
 
   <main class="page">
+    <div class="card">
 
-    <div class="top-badge">
-      <div class="bd"></div>
-      🔥 &nbsp; Exclusive VIP Offer &nbsp; 🔥
+      <div class="top-badge">
+        <div class="bd"></div>
+        🔥 &nbsp; Exclusive VIP Offer &nbsp; 🔥
+      </div>
+
+      <div class="poster-wrap">
+        <img
+          src="https://fantasticczone.site/wp-content/uploads/2026/05/ChatGPT-Image-May-14-2026-06_54_40-PM.png"
+          alt="VIP Community Poster"
+          onerror="this.style.background='#dcfce7';this.style.minHeight='180px';"
+        />
+      </div>
+
+      <div class="vip-text">
+        <h2>VIP Member Joining</h2>
+        <p>Only <span>500 Limited</span> Seats Available!</p>
+      </div>
+
+      <div class="seat-row">
+        🔥 Hurry! Only <strong>&nbsp;500 seats&nbsp;</strong> left — grab yours now! 🔥
+      </div>
+
+      <div class="cta-wrap">
+        <a href="https://t.me/+PRwkAPz8U2cyZTFl" target="_blank" rel="noopener" class="btn">
+          <span class="btn-inner">
+            <svg class="tg" viewBox="0 0 24 24" fill="none">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.069l-2.04 9.608c-.15.673-.546.837-1.107.52l-3.062-2.255-1.478 1.423c-.164.164-.3.3-.615.3l.219-3.108 5.655-5.108c.246-.218-.053-.34-.38-.12L7.27 14.078l-3.013-.94c-.655-.204-.668-.655.137-.969l11.753-4.53c.546-.2 1.024.133.847.93l-.432-.5z"/>
+            </svg>
+            Join &amp; Get Your ID
+          </span>
+        </a>
+      </div>
+
+      <div class="get-id">
+        <span class="dot"></span>
+        ⚡ Get ID Instantly
+      </div>
+
+      <p class="credit">Ads by <a href="https://t.me/+TRlJl628l-FkMWE9" target="_blank" rel="noopener">@Nexgroww_agency</a></p>
+
     </div>
-
-    <div class="poster-wrap">
-      <img
-        src="https://fantasticczone.site/wp-content/uploads/2026/05/casino-and-bookies-1080-x-1350-px-2026-05-09T124937.143.jpg"
-        alt="VIP Community Poster"
-        onerror="this.style.background='#fff8e7';this.style.height='200px';"
-      />
-    </div>
-
-    <div class="vip-text">
-      <h2>VIP Member Joining</h2>
-      <p>Only <span>500 Limited</span> Seats Available!</p>
-    </div>
-
-    <div class="seat-row">
-      <span class="fire">🔥</span>
-      Hurry! Only <span>&nbsp;500 seats&nbsp;</span> left — grab yours now!
-      <span class="fire">🔥</span>
-    </div>
-
-    <div class="cta-wrap">
-      <a href="https://t.me/+PRwkAPz8U2cyZTFl" target="_blank" rel="noopener" class="btn">
-        <span class="btn-inner">
-          <svg class="tg" viewBox="0 0 24 24" fill="none">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.069l-2.04 9.608c-.15.673-.546.837-1.107.52l-3.062-2.255-1.478 1.423c-.164.164-.3.3-.615.3l.219-3.108 5.655-5.108c.246-.218-.053-.34-.38-.12L7.27 14.078l-3.013-.94c-.655-.204-.668-.655.137-.969l11.753-4.53c.546-.2 1.024.133.847.93l-.432-.5z"/>
-          </svg>
-          Join Community
-        </span>
-      </a>
-    </div>
-
-    <div class="get-id">
-      <span class="dot"></span>
-      ⚡ Get ID Instantly
-    </div>
-
-    <p class="credit">Ads by <a href="https://t.me/+TRlJl628l-FkMWE9" target="_blank" rel="noopener">@Nexgroww_agency</a></p>
-
   </main>
 
 <!-- Meta Pixel Code -->
